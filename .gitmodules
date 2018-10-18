@@ -1,0 +1,9 @@
+[submodule "monaco-typescript"]
+	path = monaco-typescript
+	url = https://github.com/neoncom/monaco-typescript.git
+[submodule "vscode"]
+	path = vscode
+	url = https://github.com/neoncom/vscode.git
+[submodule "monaco-editor"]
+	path = monaco-editor
+	url = https://github.com/neoncom/monaco-editor-1.git
