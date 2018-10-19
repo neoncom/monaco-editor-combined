@@ -17,3 +17,5 @@ don't forget to commit this repo after running the commands (e.g. "patchfile" wi
 the submodules however will contain auto generated files that you can ignore
 
 NOTE: if you want to update monaco editor, merge the upstream branches of the submodules (use the versions of the packages that the official monacoeditor also uses)
+
+NOTE2: it also helped once to set max_old_space_size to 16000... see vscode/package.json scripts
