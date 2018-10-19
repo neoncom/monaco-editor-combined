@@ -1,3 +1,5 @@
+only build this project on posix systems because monaco import paths contain backslashes when built on windows
+
 prerequisite: install yarn from official source
 
 clone this repo first and update submodules recursive

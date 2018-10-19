@@ -5,6 +5,10 @@ const path = require('path');
 const fs = require('fs-extra');
 const semver = require('semver');
 
+if (os.platform()==='win32'){
+    throw new Error('only build this project on posix systems because monaco import paths contain backslashes when built on windows');
+}
+
 const VSCODE = path.resolve(__dirname, 'vscode');
 const MONACO_TS = path.resolve(__dirname, 'monaco-typescript');
 const MONACO_EDITOR = path.resolve(__dirname, 'monaco-editor');
@@ -20,7 +24,7 @@ gulp.task('clean', async () => {
 gulp.task('init', async () => {
 
     console.log('Installing vscode deps');
-    const file = os.platform() === 'win32' ? 'npm.bat' : 'npm.sh';
+    const file = os.platform() === 'win32' ? 'npm.bat' : './npm.sh';
     await execa(file, ['install'], { cwd: path.resolve(VSCODE, 'scripts'), stdio: 'inherit', env: { IGNOREYARNWARNING: 'true' } });
 
     console.log('Installing monaco-typescript deps');
@@ -29,7 +33,8 @@ gulp.task('init', async () => {
 
 gulp.task('build', async () => {
 
-    await execa('gulp', ['editor-distro'], { cwd: VSCODE, stdio: 'inherit' });
+    // use "npm run gulp" because this has cmd line arg that helps us (see package.json)
+    await execa('npm', ['run', 'gulp', '--', 'editor-distro'], { cwd: VSCODE, stdio: 'inherit' });
 
     // cannot install in init task because needed to run editor distro gulp task first so that npm install works (because of file://... in package.json)
     console.log('Installing monaco-editor deps');
