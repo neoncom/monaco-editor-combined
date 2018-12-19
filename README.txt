@@ -1,5 +1,7 @@
 only build this project on posix systems because monaco import paths contain backslashes when built on windows
 
+make sure you have correct version of node that vscode contributing guide recommends (e.g. use nvm, that can switch node versions at will)
+
 prerequisite: install yarn from official source
 
 clone this repo first and update submodules recursive

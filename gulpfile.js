@@ -33,6 +33,9 @@ gulp.task('init', async () => {
 
 gulp.task('build', async () => {
 
+    // will build monaco_ts as side effect
+    await execa('npm', ['install'], { cwd: MONACO_TS, stdio: 'inherit' });
+
     // use "npm run gulp" because this has cmd line arg that helps us (see package.json)
     await execa('npm', ['run', 'gulp', '--', 'editor-distro'], { cwd: VSCODE, stdio: 'inherit' });
 
